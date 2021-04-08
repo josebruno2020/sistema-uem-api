@@ -15,6 +15,7 @@ class CreateModulesTable extends Migration
     {
         Schema::create('modules', function (Blueprint $table) {
             $table->increments('id');
+            $table->text('video');
             $table->string('name');
             $table->string('slug');
             $table->boolean('isPreparatory')->default(false);
