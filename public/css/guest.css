@@ -2,8 +2,20 @@
     height: 100vh;
 }
 
+.right {
+    max-width: 50%;
+}
+
 .doctor-register {
     width: 260px;
+}
+
+.doctor-welcome {
+    width: 150px;
+}
+
+.text-welcome {
+    text-align: justify;
 }
 
 .form-group {

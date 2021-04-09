@@ -12,8 +12,15 @@
     <title>Sistema UEM - @yield('title')</title>
 </head>
 <body>
-    
-        @yield('content')
+    <main class="container-fluid d-flex justify-content-around flex-wrap">
+        <section class="d-flex align-items-center justify-content-center">
+            <img src="@yield('img')" alt="Registrar" class="@yield('img-class')">
+        </section>
+        <article class="right d-flex flex-column justify-content-center">
+            @yield('content')
+        </article>
+
+    </main>
     
 
 

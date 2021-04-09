@@ -30,4 +30,17 @@ class RegisterRequest extends FormRequest
             'password' => 'required|string|confirmed'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Campo nome é obrigatório',
+            'phone.required' => 'Campo telefone é obrigatório',
+            'email.required' => 'Campo e-mail é obrigatório',
+            'password.required' => 'Campo senha é obrigatório',
+            'name.min' => 'Campo nome deve ter mais que 2 caracteres',
+            'password.confirmed' => 'Senhas não coincidem'
+
+        ];
+    }
 }
