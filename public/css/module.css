@@ -1,0 +1,15 @@
+.nav li a{
+    color: #000 !important;
+    font-weight: bold;
+
+    transition: all 0.5s;
+}
+
+.nav li a:hover {
+    filter: brightness(50%);
+    color: #C4C4C4 !important;
+}
+
+.question {
+    text-align: justify;
+}

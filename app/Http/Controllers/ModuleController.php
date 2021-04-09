@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Module;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ModuleController extends Controller
 {
@@ -26,7 +27,8 @@ class ModuleController extends Controller
      */
     public function preparatory()
     {
-        return view('module.preparatory');
+        $loggedUser = Auth::user();
+        return view('module.preparatory', compact('loggedUser'));
     }
 
     public function evaluatePreparatory(Request $request)

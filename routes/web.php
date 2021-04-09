@@ -20,7 +20,11 @@ Route::middleware('guest')->namespace('Guest')->group(function() {
         Route::get('', 'RegisterController@index')->name('index');
         Route::post('', 'RegisterController@save')->name('save');
     });
+
+    
 });
+
+Route::middleware('auth')->get('logout', 'Guest\WelcomeController@logout')->name('logout');
 
 Route::middleware('auth')->group(function () {
 
@@ -29,7 +33,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/{id}/questions', 'ModuleController@questions')->name('questions');
         Route::post('/{id}/questions', 'ModuleController@evaluateQuestions')->name('evaluate.questions');
         Route::get('preparatory', 'ModuleController@preparatory')->name('preparatory');
-        Route::post('preparatory', 'ModuleController@evaluatePreparatory')->name('preparatory');
+        Route::post('preparatory', 'ModuleController@evaluatePreparatory')->name('preparatory.post');
     });
 
     

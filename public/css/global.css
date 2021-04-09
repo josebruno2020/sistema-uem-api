@@ -1,0 +1,22 @@
+body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--blue-primary);
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.button-blue {
+    background: var(--blue-secondary) !important;
+}
+.button-blue:hover {
+    background: var(--blue-terciary) !important;
+}
+
+
+:root{
+    --blue-primary: #F2F6FF;
+    --blue-secondary: #8AABFF;
+    --blue-terciary: #608dff;
+}

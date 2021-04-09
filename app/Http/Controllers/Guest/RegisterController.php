@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -25,9 +27,23 @@ class RegisterController extends Controller
     /**
      * Register a new visitor
      */
-    public function save(Request $request)
+    public function save(RegisterRequest $request)
     {
+        $data = $request->only([
+            'name','phone', 'email', 'password'
+        ]);
 
+        User::create([
+            'name' => $data['name'],
+            'phone' => $data['phone'],
+            'email' => $data['email'],
+            'password' => bcrypt($data['password'])
+        ]);
+
+        Auth::attempt(['email' => $data['email'], 'password' => $data['password']], true);
+
+
+        return redirect()->route('module.preparatory');
     }
 
 }
