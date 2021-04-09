@@ -16,7 +16,7 @@
     <div class="form-group">
         <label for="name" class="form-label">Nome:</label>
         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" id="name" autofocus="true" value="{{ old('name') }}">
-        <div id="passwordHelpBlock" class="form-text text-danger">
+        <div id="name-error" class="form-text text-danger">
             @error('name')
                 {{$errors->first('name')}}
             @enderror
@@ -25,7 +25,7 @@
     <div class="form-group">
         <label for="phone" class="form-label">Telefone:</label>
         <input type="text" class="form-control phone @error('phone') is-invalid @enderror" name="phone" id="phone" value="{{ old('phone') }}">
-        <div id="passwordHelpBlock" class="form-text text-danger">
+        <div id="phone-error" class="form-text text-danger">
             @error('phone')
                 {{$errors->first('phone')}}
             @enderror
@@ -34,7 +34,7 @@
     <div class="form-group">
         <label for="email" class="form-label">E-mail:</label>
         <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" value="{{ old('email') }}">
-        <div id="passwordHelpBlock" class="form-text text-danger">
+        <div id="email-error" class="form-text text-danger">
             @error('email')
                 {{$errors->first('email')}}
             @enderror
@@ -43,7 +43,7 @@
     <div class="form-group">
         <label for="password" class="form-label">Senha:</label>
         <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password">
-        <div id="passwordHelpBlock" class="form-text text-danger">
+        <div id="password-error" class="form-text text-danger">
             @error('password')
                 {{$errors->first('password')}}
             @enderror
@@ -52,8 +52,8 @@
     
     <div class="form-group">
         <label for="password" class="form-label">Confirme sua Senha:</label>
-        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" id="password">
-        <div id="passwordHelpBlock" class="form-text text-danger">
+        <input type="password" class="form-control @error('password') is-invalid @enderror" name="password_confirmation" id="password_confirmation">
+        <div id="password_confirmation_error" class="form-text text-danger">
             @error('password')
                 {{$errors->first('password')}}
             @enderror
