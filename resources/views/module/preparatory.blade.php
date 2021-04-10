@@ -1,4 +1,4 @@
-@extends('module.layout')
+@extends('layouts.layout-module')
 
 @section('title', 'Questionário Preparatório')
 

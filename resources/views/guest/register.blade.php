@@ -60,6 +60,9 @@
         </div>
     </div>
     
+    <div class="form-group">
+        <p>Já tem registro? Faça o <a href="{{ route('login') }}">Login</a></p>
+    </div>
 
     <div class="form-group d-flex justify-content-center mt-5">
         <input type="submit" class="btn  button-blue" value="Registrar-se">

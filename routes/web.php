@@ -21,6 +21,11 @@ Route::middleware('guest')->namespace('Guest')->group(function() {
         Route::post('', 'RegisterController@save')->name('save');
     });
 
+
+    Route::get('login', 'LoginController@index')->name('login');
+    Route::post('login', 'LoginController@login')->name('login.post');
+    Route::get('logout', 'LoginController@logout')->name('logout');
+    
     
 });
 
