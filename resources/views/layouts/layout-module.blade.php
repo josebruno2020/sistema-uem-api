@@ -16,15 +16,19 @@
     <header class="header mb-3">
         <ul class="nav d-flex flex-row justify-content-between">
             <span class="d-flex">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Tema 1 <i class="fas fa-check-circle" style="color:green;"></i></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Tema 2 <i class="far fa-times-circle" style="color: red"></i></a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#">Tema 3 <i class="far fa-times-circle" style="color: red"></i></a>
-                  </li>
+                @foreach ($modules as $module)
+                    <li class="nav-item">
+                        <a class="nav-link {{$loggedUser->module_active == $module->id ? 'active' : ''}}" aria-current="page" href="{{route('module.index', [$module->slug])}}">{{$module->name}}
+                            <i class="fas fa-check-circle" style="color:green;"></i>
+                        </a>
+                    </li>
+                    {{-- <li class="nav-item">
+                        <a class="nav-link" href="#">Tema 2 <i class="far fa-times-circle" style="color: red"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Tema 3 <i class="far fa-times-circle" style="color: red"></i></a>
+                    </li> --}}
+                  @endforeach
             </span>
             <span>
                 <li class="nav-item">

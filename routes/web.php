@@ -34,11 +34,16 @@ Route::middleware('auth')->get('logout', 'Guest\WelcomeController@logout')->name
 Route::middleware('auth')->group(function () {
 
     Route::prefix('module')->name('module.')->group(function() {
-        Route::get('', 'ModuleController@index')->name('index');
+        Route::get('/{slug}', 'ModuleController@index')->name('index');
         Route::get('/{id}/questions', 'ModuleController@questions')->name('questions');
         Route::post('/{id}/questions', 'ModuleController@evaluateQuestions')->name('evaluate.questions');
-        Route::get('preparatory', 'ModuleController@preparatory')->name('preparatory');
-        Route::post('preparatory', 'ModuleController@evaluatePreparatory')->name('preparatory.post');
+        
+
+        Route::prefix('preparatory')->group(function() {
+            Route::get('index', 'ModuleController@preparatory')->name('preparatory');
+            Route::post('preparatory', 'ModuleController@evaluatePreparatory')->name('preparatory.post');
+        });
+       
     });
 
     

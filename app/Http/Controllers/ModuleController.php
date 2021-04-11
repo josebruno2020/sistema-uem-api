@@ -17,9 +17,20 @@ class ModuleController extends Controller
     /**
      * Module Screen
      */
-    public function index()
+    public function index(string $slug)
     {
+        // dd($slug);
+        $loggedUser = Auth::user();
+        $module = $this->module->query()
+            ->where('slug', $slug)
+            ->where('is_preparatory', false)
+            ->first();
 
+        if(!$module) {
+            abort(404);
+        }
+
+        return view('module.index', compact('module', 'loggedUser'));
     }
 
     /**

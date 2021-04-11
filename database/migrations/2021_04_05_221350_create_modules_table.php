@@ -18,7 +18,7 @@ class CreateModulesTable extends Migration
             $table->text('video');
             $table->string('name');
             $table->string('slug');
-            $table->boolean('isPreparatory')->default(false);
+            $table->boolean('is_preparatory')->default(false);
             $table->timestamps();
         });
     }

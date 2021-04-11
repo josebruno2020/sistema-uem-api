@@ -9,7 +9,7 @@ class Module extends Model
 {
     use HasFactory;
     protected $table = 'modules';
-    protected $fillable = ['name', 'slug'];
+    protected $fillable = ['name', 'slug', 'video', 'is_preparatory'];
 
     public function questions()
     {
