@@ -1,6 +1,6 @@
-.nav {
+/* .nav {
     padding: 0 5vw 0 10vw;
-}
+} */
 
 .nav li a{
     color: #000 !important;
@@ -16,4 +16,8 @@
 
 .question {
     text-align: justify;
+}
+
+.cursor-desabled {
+    cursor: not-allowed;
 }
