@@ -19,7 +19,7 @@
                 @foreach ($modules as $module)
                     <li class="nav-item">
                         <a 
-                            class="nav-link {{$loggedUser->module_active == $module->id ? 'active' : ''}} {{$loggedUser->module_active == $module->id ? 'cursor-desabled' : ''}}" 
+                            class="nav-link {{$loggedUser->module_active == $module->id ? 'active' : ''}} {{$loggedUser->module_active != $module->id ? 'cursor-desabled' : ''}}" 
                             aria-current="page" 
                             href="{{route('module.index', [$module->slug])}}"
                             title="{{ $module->name }}"

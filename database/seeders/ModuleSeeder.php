@@ -24,7 +24,15 @@ class ModuleSeeder extends Seeder
         Module::create([
             'name' => 'Tema 1',
             'slug' => 'tema1',
-            'video' => 'video de teste',
+            'video' => '<iframe class="module-video" src="https://www.youtube.com/embed/sXG0Ycl0smM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+            'is_preparatory' => false
+        ]);
+
+
+        Module::create([
+            'name' => 'Tema 2',
+            'slug' => 'tema2',
+            'video' => '<iframe class="module-video" src="https://www.youtube.com/embed/sXG0Ycl0smM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
             'is_preparatory' => false
         ]);
     }

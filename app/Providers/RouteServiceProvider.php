@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const MODULE = '/module';
+    // public const MODULE = '/module/preparatory/index';
     public const REGISTER = '/register';
 
     /**

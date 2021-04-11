@@ -25,9 +25,19 @@ class ModuleController extends Controller
             ->where('slug', $slug)
             ->where('is_preparatory', false)
             ->first();
+        
 
         if(!$module) {
             abort(404);
+        }
+
+        //Proteções contra a pessoa acessar um modulo no qual ainda não está ativo;
+        if($loggedUser->module_active != $module->id) {
+            $module = $this->module->find($loggedUser->module_active);
+            if($module->id == 1) {
+                return redirect()->route('module.preparatory');
+            }
+            return redirect()->route('module.index', $module->slug);
         }
 
         return view('module.index', compact('module', 'loggedUser'));

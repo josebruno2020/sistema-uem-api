@@ -32,7 +32,6 @@ Route::middleware('guest')->namespace('Guest')->group(function() {
 Route::middleware('auth')->get('logout', 'Guest\WelcomeController@logout')->name('logout');
 
 Route::middleware('auth')->group(function () {
-
     Route::prefix('module')->name('module.')->group(function() {
         Route::get('/{slug}', 'ModuleController@index')->name('index');
         Route::get('/{id}/questions', 'ModuleController@questions')->name('questions');
