@@ -27,11 +27,11 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        if (Schema::hasTable('table')) {
+        // if (Schema::hasTable('table')) {
             $modules = Module::query()->where('is_preparatory', false)->get();
         
             View::share('modules', $modules);
-        }
+        // }
         
         
     }
