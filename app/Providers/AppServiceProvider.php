@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Module;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
@@ -26,10 +27,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
 
-        // $modules = Module::query()->where('is_preparatory', false)->get();
-        // if(!$modules) {
-        //     View::share('modules', 'Não tem modulo');
-        // }
-        // View::share('modules', $modules);
+        if (Schema::hasTable('table')) {
+            $modules = Module::query()->where('is_preparatory', false)->get();
+        
+            View::share('modules', $modules);
+        }
+        
+        
     }
 }
