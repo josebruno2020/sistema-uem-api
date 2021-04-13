@@ -5,7 +5,7 @@
 @section('content')
 
 <main class="container mt-3">
-    <form action="" method="post">
+    <form action="{{route('module.preparatory.post')}}" method="post">
         @csrf
         <div class="form-group">
             {{-- Enunciado --}}

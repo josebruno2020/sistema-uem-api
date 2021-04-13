@@ -25,7 +25,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $modules = Module::query()->where('is_preparatory', false)->get();
-        View::share('modules', $modules);
+
+        // $modules = Module::query()->where('is_preparatory', false)->get();
+        // if(!$modules) {
+        //     View::share('modules', 'Não tem modulo');
+        // }
+        // View::share('modules', $modules);
     }
 }

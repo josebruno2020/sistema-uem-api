@@ -40,7 +40,7 @@ Route::middleware('auth')->group(function () {
 
         Route::prefix('preparatory')->group(function() {
             Route::get('index', 'ModuleController@preparatory')->name('preparatory');
-            Route::post('preparatory', 'ModuleController@evaluatePreparatory')->name('preparatory.post');
+            Route::post('index', 'ModuleController@evaluatePreparatory')->name('preparatory.post');
         });
        
     });
