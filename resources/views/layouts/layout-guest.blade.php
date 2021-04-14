@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/guest.css') }}">
-    <title>Sistema UEM - @yield('title')</title>
+    <title>Reanima UEM - @yield('title')</title>
 </head>
 <body>
     <main class="container-fluid d-flex justify-content-around flex-wrap">

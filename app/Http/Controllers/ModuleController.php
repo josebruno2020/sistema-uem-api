@@ -49,6 +49,11 @@ class ModuleController extends Controller
     public function preparatory()
     {
         $loggedUser = Auth::user();
+        if($loggedUser->module_active != 1) {
+            $module = $this->module->find($loggedUser->module_active);
+            return view('module.index', compact('module', 'loggedUser'));
+        }
+
         return view('module.preparatory', compact('loggedUser'));
     }
 
