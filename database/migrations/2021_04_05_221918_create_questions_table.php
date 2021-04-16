@@ -17,7 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->increments('id');
             $table->integer('module_id')->unsigned();
             $table->integer('number');
-            $table->integer('correct');
+            $table->boolean('correct');
             $table->text('question');
             $table->foreign('module_id')->references('id')->on('modules');
             $table->timestamps();
