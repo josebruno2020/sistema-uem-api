@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AnswerUser;
 use App\Models\Module;
+use App\Models\User;
+use App\Services\AnswerServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -54,12 +57,17 @@ class ModuleController extends Controller
             return view('module.index', compact('module', 'loggedUser'));
         }
 
-        return view('module.preparatory', compact('loggedUser'));
+        $module = $this->module->query()->where('is_preparatory', true)->first();
+
+        return view('module.preparatory', compact('loggedUser', 'module'));
     }
 
-    public function evaluatePreparatory(Request $request)
+    public function evaluatePreparatory(Request $request, AnswerServices $answerServices)
     {
-
+        $answers = $request->answer;
+        $moduleActive = $answerServices->UserAnswer($answers);
+        $module = $this->module->find($moduleActive);
+        return redirect()->route('module.index', ['slug' => $module->slug]);
     }
 
 
