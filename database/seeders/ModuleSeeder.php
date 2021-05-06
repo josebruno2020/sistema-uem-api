@@ -21,7 +21,7 @@ class ModuleSeeder extends Seeder
         $module2 = Module::create([
             'name' => 'Ventilação Mecânica',
             'slug' => 'ventilacao-mecanica',
-            'video' => '<iframe class="module-video" src="https://www.youtube.com/embed/sXG0Ycl0smM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+            'video' => '<iframe class="module-video" src="https://www.youtube.com/embed/HCGj_-sUZXw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
             'is_preparatory' => false
         ]);
         $module2Question1 = $this->createQuestionModule(
@@ -46,7 +46,7 @@ class ModuleSeeder extends Seeder
         $module3 = Module::create([
             'name' => 'Tema 2',
             'slug' => 'tema2',
-            'video' => '<iframe class="module-video" src="https://www.youtube.com/embed/sXG0Ycl0smM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+            'video' => '<iframe class="module-video" src="https://www.youtube.com/embed/HCGj_-sUZXw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
             'is_preparatory' => false
         ]);
 

@@ -23,6 +23,7 @@
                             name="answer[{{$question->id}}]" 
                             value="{{ $answer->number }}"
                             id="{{$question->number}}{{$answer->number}}"
+                            required
                         >
                         <label class="form-check-label" for="{{$question->number}}{{$answer->number}}">
                             {{$answer->answer}}

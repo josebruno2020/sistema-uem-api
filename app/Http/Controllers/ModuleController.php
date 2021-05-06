@@ -73,10 +73,13 @@ class ModuleController extends Controller
 
     /**
      * Module Questions
+     * @param int $id
      */
-    public function questions()
+    public function questions(int $id)
     {
-        return view('module.questions');
+        $loggedUser = Auth::user();
+        $module = $this->module->find($id);
+        return view('module.questions', compact('module', 'loggedUser'));
     }
 
 
@@ -85,7 +88,8 @@ class ModuleController extends Controller
      */
     public function evaluateQuestions(Request $request)
     {
-        
+        $answers = $request->answer;
+        dd($answers);
     }
 }
 

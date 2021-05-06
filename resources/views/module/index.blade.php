@@ -10,5 +10,8 @@
     {!! $module->video !!}
 </div>
 
+<div class="form-group d-flex justify-content-center mt-5">
+    <a href="{{ route('module.questions', [$module->id]) }}"  class="btn  button-blue" title="Responder Formulário">Responder formulário</a> 
+</div>
 
 @endsection
