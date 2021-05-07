@@ -24,14 +24,13 @@ class LoginController extends Controller
         $data = $request->only([
             'email', 'password'
         ]);
-
-        if(Auth::attempt(['email' => $data['email'], 'password' => $data['password']], true)) {
-
-            return redirect()->route('module.preparatory');
+        $token =  Auth::attempt(['email' => $data['email'], 'password' => $data['password']], true);
+        if($token) {
+            return $this->sendData(['token' => $token]);
+            // return redirect()->route('module.preparatory');
 
         } else {
-            $flash = $request->session()->flash('flash', 'Usuário e/ou senha inválidos!');
-            return redirect()->back()->with($flash);
+            return response()->json(['error' => 'Senha e/ou usuário inválidos'], 401);
         }
 
         
