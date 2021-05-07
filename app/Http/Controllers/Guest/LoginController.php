@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Guest;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -24,9 +25,13 @@ class LoginController extends Controller
         $data = $request->only([
             'email', 'password'
         ]);
+        $user = User::where('email', $data['email'])->first();
         $token =  Auth::attempt(['email' => $data['email'], 'password' => $data['password']], true);
         if($token) {
-            return $this->sendData(['token' => $token]);
+            return $this->sendData([
+                'user' => $user,
+                'token' => $token
+            ]);
             // return redirect()->route('module.preparatory');
 
         } else {

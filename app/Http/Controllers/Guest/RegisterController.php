@@ -33,7 +33,7 @@ class RegisterController extends Controller
             'name','phone', 'email', 'password'
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $data['name'],
             'phone' => $data['phone'],
             'email' => $data['email'],
@@ -42,7 +42,10 @@ class RegisterController extends Controller
 
         $token = Auth::attempt(['email' => $data['email'], 'password' => $data['password']], true);
 
-        $data = ['token' => $token];
+        $data = [
+            'user' => $user,
+            'token' => $token
+        ];
         return $this->sendData($data);
         // return redirect()->route('module.preparatory');
     }

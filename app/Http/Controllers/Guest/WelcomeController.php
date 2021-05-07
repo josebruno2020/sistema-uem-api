@@ -22,6 +22,6 @@ class WelcomeController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('register.index');
+        return $this->sendData([]);
     }
 }

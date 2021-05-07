@@ -22,33 +22,45 @@ class ModuleController extends Controller
         $this->question = $question;
     }
 
+    
+    public function index()
+    {
+        $modules = $this->module->query()
+            ->where('is_preparatory', false)
+            ->get();
+        $data = ['modules' => $modules];
+
+        return $this->sendData($data);
+        // // dd($slug);
+        // $loggedUser = Auth::user();
+        // $module = $this->module->query()
+        //     ->where('slug', $slug)
+        //     ->where('is_preparatory', false)
+        //     ->first();
+        
+
+        // if(!$module) {
+        //     abort(404);
+        // }
+
+        // //Proteções contra a pessoa acessar um modulo no qual ainda não está ativo;
+        // if($loggedUser->module_active != $module->id) {
+        //     $module = $this->module->find($loggedUser->module_active);
+        //     if($module->id == 1) {
+        //         return redirect()->route('module.preparatory');
+        //     }
+        //     return redirect()->route('module.index', $module->slug);
+        // }
+
+        // return view('module.index', compact('module', 'loggedUser'));
+    }
+
     /**
      * Module Screen
      */
-    public function index(string $slug)
+    public function slug(string $slug) 
     {
-        // dd($slug);
-        $loggedUser = Auth::user();
-        $module = $this->module->query()
-            ->where('slug', $slug)
-            ->where('is_preparatory', false)
-            ->first();
-        
 
-        if(!$module) {
-            abort(404);
-        }
-
-        //Proteções contra a pessoa acessar um modulo no qual ainda não está ativo;
-        if($loggedUser->module_active != $module->id) {
-            $module = $this->module->find($loggedUser->module_active);
-            if($module->id == 1) {
-                return redirect()->route('module.preparatory');
-            }
-            return redirect()->route('module.index', $module->slug);
-        }
-
-        return view('module.index', compact('module', 'loggedUser'));
     }
 
     /**

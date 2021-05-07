@@ -23,8 +23,9 @@ Route::namespace('Guest')->group(function() {
     Route::post('register', 'RegisterController@save');
     Route::post('login', 'LoginController@login');
 });
-
-Route::prefix('module')->middleware('auth')->group(function() {
+Route::prefix('module')->middleware('auth:api')->group(function() {
+    Route::get('', 'ModuleController@index');
+    Route::get('/{slug}', 'ModuleController@slug');
     Route::get('preparatory/index', 'ModuleController@preparatory');
 });
 
