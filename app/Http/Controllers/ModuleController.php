@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\QuestionResource;
+use App\Models\Answer;
 use App\Models\AnswerUser;
 use App\Models\Module;
+use App\Models\Question;
 use App\Models\User;
 use App\Services\AnswerServices;
 use Illuminate\Http\Request;
@@ -12,9 +15,11 @@ use Illuminate\Support\Facades\Auth;
 class ModuleController extends Controller
 {
     protected $module;
-    public function __construct(Module $module)
+    protected $question;
+    public function __construct(Module $module, Question $question)
     {
         $this->module = $module;
+        $this->question = $question;
     }
 
     /**
@@ -51,15 +56,14 @@ class ModuleController extends Controller
      */
     public function preparatory()
     {
-        $loggedUser = Auth::user();
-        if($loggedUser->module_active != 1) {
-            $module = $this->module->find($loggedUser->module_active);
-            return view('module.index', compact('module', 'loggedUser'));
-        }
-
         $module = $this->module->query()->where('is_preparatory', true)->first();
-
-        return view('module.preparatory', compact('loggedUser', 'module'));
+        $questions = $this->question->query()->where('module_id', $module->id)->get();
+        
+        $data = [
+            'module' => $module,
+            'questions' => $questions
+        ];
+        return $this->sendData($data);
     }
 
     public function evaluatePreparatory(Request $request, AnswerServices $answerServices)

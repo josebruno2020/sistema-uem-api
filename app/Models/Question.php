@@ -10,6 +10,7 @@ class Question extends Model
     use HasFactory;
     protected $table = 'questions';
     protected $fillable = ['number', 'question', 'module_id'];
+    protected $appends = ['answers'];
 
     public function module()
     {
@@ -19,5 +20,10 @@ class Question extends Model
     public function answers()
     {
         return $this->hasMany(Answer::class);
+    }
+
+    public function getAnswersAttribute()
+    {
+        return $this->answers()->get();
     }
 }

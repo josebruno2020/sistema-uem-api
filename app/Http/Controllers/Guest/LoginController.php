@@ -30,7 +30,7 @@ class LoginController extends Controller
             // return redirect()->route('module.preparatory');
 
         } else {
-            return response()->json(['error' => 'Senha e/ou usuário inválidos'], 401);
+            return response()->json(['error' => 'Senha e/ou usuário inválidos'], 400);
         }
 
         
