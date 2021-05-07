@@ -40,10 +40,11 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password'])
         ]);
 
-        Auth::attempt(['email' => $data['email'], 'password' => $data['password']], true);
+        $token = Auth::attempt(['email' => $data['email'], 'password' => $data['password']], true);
 
-
-        return redirect()->route('module.preparatory');
+        $data = ['token' => $token];
+        return $this->sendData($data);
+        // return redirect()->route('module.preparatory');
     }
 
 }
