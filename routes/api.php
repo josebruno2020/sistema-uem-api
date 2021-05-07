@@ -24,7 +24,7 @@ Route::namespace('Guest')->group(function() {
     Route::post('login', 'LoginController@login');
 });
 
-Route::prefix('module')->group(function() {
+Route::prefix('module')->middleware('auth')->group(function() {
     Route::get('preparatory/index', 'ModuleController@preparatory');
 });
 
