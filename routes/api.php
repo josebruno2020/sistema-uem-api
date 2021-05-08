@@ -25,6 +25,7 @@ Route::namespace('Guest')->group(function() {
 });
 Route::prefix('module')->middleware('auth:api')->group(function() {
     Route::get('', 'ModuleController@index');
+    Route::get('/{id}/questions', 'ModuleController@questions');
     Route::get('/{slug}', 'ModuleController@slug');
     Route::get('preparatory/index', 'ModuleController@preparatory');
 });

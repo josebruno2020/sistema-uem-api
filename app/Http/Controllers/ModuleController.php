@@ -60,7 +60,16 @@ class ModuleController extends Controller
      */
     public function slug(string $slug) 
     {
+        $module = $this->module->query()
+            ->where('slug', $slug)
+            ->where('is_preparatory', false)
+            ->first();
 
+        if(!$module) {
+            return response([], 404);
+        }
+        $data = ['module' => $module];
+        return $this->sendData($data);
     }
 
     /**
@@ -93,9 +102,14 @@ class ModuleController extends Controller
      */
     public function questions(int $id)
     {
-        $loggedUser = Auth::user();
         $module = $this->module->find($id);
-        return view('module.questions', compact('module', 'loggedUser'));
+        $questions = $this->question->query()->where('module_id', $module->id)->get();
+        
+        $data = [
+            'module' => $module,
+            'questions' => $questions
+        ];
+        return $this->sendData($data);
     }
 
 
