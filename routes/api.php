@@ -23,10 +23,22 @@ Route::namespace('Guest')->group(function() {
     Route::post('register', 'RegisterController@save');
     Route::post('login', 'LoginController@login');
 });
-Route::prefix('module')->middleware('auth:api')->group(function() {
-    Route::get('', 'ModuleController@index');
-    Route::get('/{id}/questions', 'ModuleController@questions');
-    Route::get('/{slug}', 'ModuleController@slug');
-    Route::get('preparatory/index', 'ModuleController@preparatory');
+
+Route::middleware('auth:api')->group(function() {
+
+    Route::prefix('module')->group(function() {
+        Route::get('', 'ModuleController@index');
+        Route::get('/{id}/questions', 'ModuleController@questions');
+        Route::post('/{id}/questions', 'ModuleController@evaluateQuestions');
+        Route::get('/{slug}', 'ModuleController@slug');
+        Route::get('preparatory/index', 'ModuleController@preparatory');
+        Route::post('preparatory/index', 'ModuleController@evaluatePreparatory');
+    });
+
+    Route::prefix('class')->group(function() {
+        Route::get('{id}', 'ClassController@index');
+    });
+    
 });
+
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateModulesTable extends Migration
+class CreateClassesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,14 @@ class CreateModulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('classes', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('module_id')->unsigned();
             $table->string('name');
-            $table->string('slug')->nullable();
-            $table->boolean('is_preparatory')->default(false);
+            $table->text('video');
+            
+            $table->foreign('module_id')
+                ->references('id')->on('modules');
             $table->timestamps();
         });
     }
@@ -29,6 +32,6 @@ class CreateModulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists('classes');
     }
 }

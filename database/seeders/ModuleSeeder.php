@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Answer;
+use App\Models\ClassModel;
 use App\Models\Module;
 use App\Models\Question;
 use Illuminate\Database\Seeder;
@@ -21,9 +22,20 @@ class ModuleSeeder extends Seeder
         $module2 = Module::create([
             'name' => 'Ventilação Mecânica',
             'slug' => 'ventilacao-mecanica',
-            'video' => '<iframe class="module-video" src="https://www.youtube.com/embed/HCGj_-sUZXw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
             'is_preparatory' => false
         ]);
+        $this->createClassModel(
+            $module2, 
+            'Aula 01', 
+            '<iframe class="module_video" src="https://www.youtube.com/embed/HCGj_-sUZXw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+        );
+
+        $this->createClassModel(
+            $module2,
+            'Aula 02',
+            '<iframe class="module_video" src="https://www.youtube.com/embed/HCGj_-sUZXw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+        );
+
         $module2Question1 = $this->createQuestionModule(
             $module2->id, 
             1, 
@@ -46,9 +58,20 @@ class ModuleSeeder extends Seeder
         $module3 = Module::create([
             'name' => 'Tema 2',
             'slug' => 'tema2',
-            'video' => '<iframe class="module-video" src="https://www.youtube.com/embed/HCGj_-sUZXw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
             'is_preparatory' => false
         ]);
+
+        $this->createClassModel(
+            $module3, 
+            'Aula 01 - Tema 2', 
+            '<iframe class="module_video" src="https://www.youtube.com/embed/HCGj_-sUZXw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+        );
+
+        $this->createClassModel(
+            $module3,
+            'Aula 02 - Tema 2',
+            '<iframe class="module_video" src="https://www.youtube.com/embed/HCGj_-sUZXw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+        );
 
         $this->createQuestionModule(
             $module3->id, 
@@ -91,13 +114,21 @@ class ModuleSeeder extends Seeder
         ]);
     }
 
+    protected function createClassModel(Module $module, string $name, string $video)
+    {
+        ClassModel::create([
+            'module_id' => $module->id,
+            'name' => $name,
+            'video' => $video,
+        ]);
+    }
+
 
     protected function createModulePreparatory()
     {
         $preparatory = Module::create([
             'name' => 'Modulo Preparatório',
             'slug' => null,
-            'video' => null,
             'is_preparatory' => true
         ]);
 

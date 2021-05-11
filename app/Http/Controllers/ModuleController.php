@@ -5,54 +5,40 @@ namespace App\Http\Controllers;
 use App\Http\Resources\QuestionResource;
 use App\Models\Answer;
 use App\Models\AnswerUser;
+use App\Models\ClassModel;
 use App\Models\Module;
 use App\Models\Question;
 use App\Models\User;
 use App\Services\AnswerServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ModuleController extends Controller
 {
     protected $module;
     protected $question;
-    public function __construct(Module $module, Question $question)
+    protected $classModel;
+    public function __construct(Module $module, Question $question, ClassModel $classModel)
     {
         $this->module = $module;
         $this->question = $question;
+        $this->classModel = $classModel;
     }
 
-    
+    /**
+     * Função para retornar os módulos para montar o menu;
+     */
     public function index()
     {
         $modules = $this->module->query()
             ->where('is_preparatory', false)
             ->get();
+        
+        
         $data = ['modules' => $modules];
 
         return $this->sendData($data);
-        // // dd($slug);
-        // $loggedUser = Auth::user();
-        // $module = $this->module->query()
-        //     ->where('slug', $slug)
-        //     ->where('is_preparatory', false)
-        //     ->first();
-        
-
-        // if(!$module) {
-        //     abort(404);
-        // }
-
-        // //Proteções contra a pessoa acessar um modulo no qual ainda não está ativo;
-        // if($loggedUser->module_active != $module->id) {
-        //     $module = $this->module->find($loggedUser->module_active);
-        //     if($module->id == 1) {
-        //         return redirect()->route('module.preparatory');
-        //     }
-        //     return redirect()->route('module.index', $module->slug);
-        // }
-
-        // return view('module.index', compact('module', 'loggedUser'));
     }
 
     /**
@@ -90,9 +76,17 @@ class ModuleController extends Controller
     public function evaluatePreparatory(Request $request, AnswerServices $answerServices)
     {
         $answers = $request->answer;
+        // print_r($answers);exit;
+        // dd($answers);
         $moduleActive = $answerServices->UserAnswer($answers);
+        
         $module = $this->module->find($moduleActive);
-        return redirect()->route('module.index', ['slug' => $module->slug]);
+        return $this->sendData([
+            'module_active' => $moduleActive,
+            'slug' => $module->slug, 
+            'msg' => 'Resposta enviada com sucesso!'
+        ]);
+        // return redirect()->route('module.index', ['slug' => $module->slug]);
     }
 
 

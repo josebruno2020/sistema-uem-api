@@ -10,6 +10,12 @@ class Module extends Model
     use HasFactory;
     protected $table = 'modules';
     protected $fillable = ['name', 'slug', 'video', 'is_preparatory'];
+    protected $appends = ['class'];
+
+    public function  classes()
+    {
+        return $this->hasMany(ClassModel::class);
+    }
 
     public function questions()
     {
@@ -25,4 +31,10 @@ class Module extends Model
             'user_id'
         );
     }
+
+    public function getClassAttribute()
+    {
+        return $this->classes()->get();
+    }
+    
 }

@@ -20,7 +20,7 @@ class AnswerServices {
         $this->user = $user;
     }
 
-    public function UserAnswer(array $answers) : int
+    public function UserAnswer($answers) : int
     {
         $loggedUser = Auth::user();
         foreach($answers as $question => $answer){
