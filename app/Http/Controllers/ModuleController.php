@@ -41,6 +41,16 @@ class ModuleController extends Controller
         return $this->sendData($data);
     }
 
+    public function show(int $id)
+    {
+        $module = $this->module->find($id);
+        if(!$module) {
+            return response('', 404);
+        }
+
+        return $this->sendData(['module' => $module]);
+    }
+
     /**
      * Module Screen
      */

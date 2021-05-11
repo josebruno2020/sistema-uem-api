@@ -28,6 +28,7 @@ Route::middleware('auth:api')->group(function() {
 
     Route::prefix('module')->group(function() {
         Route::get('', 'ModuleController@index');
+        Route::get('/show/{id}', 'ModuleController@show');
         Route::get('/{id}/questions', 'ModuleController@questions');
         Route::post('/{id}/questions', 'ModuleController@evaluateQuestions');
         Route::get('/{slug}', 'ModuleController@slug');
