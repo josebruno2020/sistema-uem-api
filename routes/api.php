@@ -22,8 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::namespace('Guest')->group(function() {
     Route::post('register', 'RegisterController@save');
     Route::post('login', 'LoginController@login');
+    
 });
-
+Route::post('mail/contact', 'MailController@contact');
 Route::middleware('auth:api')->group(function() {
 
     Route::prefix('module')->group(function() {
