@@ -91,7 +91,7 @@ class ModuleSeeder extends Seeder
         );
     }
 
-    protected function createQuestionModule(int $moduleId, int $number, bool $correct, string $question) : Question
+    protected function createQuestionModule(int $moduleId, int $number, int $correct, string $question) : Question
     {
         $question = Question::create([
             'module_id' => $moduleId,

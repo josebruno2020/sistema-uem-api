@@ -10,6 +10,7 @@ use App\Models\Module;
 use App\Models\Question;
 use App\Models\User;
 use App\Services\AnswerServices;
+use App\Services\ModuleServices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -86,8 +87,6 @@ class ModuleController extends Controller
     public function evaluatePreparatory(Request $request, AnswerServices $answerServices)
     {
         $answers = $request->answer;
-        // print_r($answers);exit;
-        // dd($answers);
         $moduleActive = $answerServices->UserAnswer($answers);
         
         $module = $this->module->find($moduleActive);
@@ -96,7 +95,6 @@ class ModuleController extends Controller
             'slug' => $module->slug, 
             'msg' => 'Resposta enviada com sucesso!'
         ]);
-        // return redirect()->route('module.index', ['slug' => $module->slug]);
     }
 
 
@@ -120,10 +118,54 @@ class ModuleController extends Controller
     /**
      * Evaluate module questions 
      */
-    public function evaluateQuestions(Request $request)
+    public function evaluateQuestions(Request $request, AnswerServices $answerServices)
     {
         $answers = $request->answer;
-        dd($answers);
+
+        $correctAnswers = 0;
+        $incorrectAnswers = [];
+        foreach($answers as $key => $answer) {
+            $question = $this->question->find($key);
+            if($answer == $question->correct) {
+                $correctAnswers++;
+            } else {
+                array_push($incorrectAnswers, $question->number);
+            }
+        }
+
+        $percent = $answerServices->calculatePorcentage($correctAnswers, count($answers));
+
+        $data = [
+            'incoorectAnswers' => $incorrectAnswers,
+            'percent' => $percent
+        ];
+
+        if($percent <= 80) {
+            return response()->json($data, 206);
+        } 
+
+        $answerServices->UserAnswer($answers, false);
+        return $this->sendData($data);
+        
+    }
+
+    public function updateModuleActive(ModuleServices $moduleServices)
+    {
+        $loggedUser = Auth::user();
+        $moduleActive = $moduleServices->updateModuleActive($loggedUser);
+        $totalModules = $this->module->count();
+        $value = false;
+        if($moduleActive > $totalModules) {
+            $value = $moduleServices->userFinshedAllModules($loggedUser);            
+        }
+        
+        return $this->sendData([
+            'module_active' => $moduleActive, 
+            'is_finished' => $value
+        ]);
+        
+
+        
     }
 }
 
