@@ -24,4 +24,9 @@ class WelcomeController extends Controller
         Auth::logout();
         return $this->sendData([]);
     }
+
+    public function teste()
+    {
+        return response()->json([], 200);
+    }
 }
