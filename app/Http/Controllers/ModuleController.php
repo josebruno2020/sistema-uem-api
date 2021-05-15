@@ -140,7 +140,7 @@ class ModuleController extends Controller
             'percent' => $percent
         ];
 
-        if($percent <= 80) {
+        if($percent < 80) {
             return response()->json($data, 206);
         } 
 
