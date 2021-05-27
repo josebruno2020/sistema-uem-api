@@ -24,6 +24,7 @@ Route::namespace('Guest')->group(function() {
     Route::get('teste', 'WelcomeController@teste');
     Route::post('register', 'RegisterController@save');
     Route::post('login', 'LoginController@login');
+    Route::get('certificado/email/{id}', 'CertificadoController@email')->name('email');
     
 });
 Route::post('mail/contact', 'MailController@contact');

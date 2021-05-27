@@ -84,13 +84,13 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'contato@reanimauem.com.br'),
+        'name' => env('MAIL_FROM_NAME', 'Reniam UEM'),
     ],
-    'to' => [
-        'address' => env('MAIL_TO', 'email@teste.com'),
-        'name' => 'Reanima UEM'
-    ],
+    // 'to' => [
+    //     'address' => env('MAIL_TO', 'contato@reanimauem.com.br'),
+    //     'name' => 'Reanima UEM'
+    // ],
 
     /*
     |--------------------------------------------------------------------------

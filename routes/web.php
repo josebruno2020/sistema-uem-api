@@ -15,26 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->namespace('Guest')->group(function() {
 
-    Route::get('certificado/impressao/{id}', 'ImpressaoController@impressao')->name('impressao');
+    Route::prefix('certificado')->name('certificado.')->group(function() {
+        Route::get('impressao/{id}', 'CertificadoController@impressao')->name('impressao');
+        Route::get('visualizar/{id}', 'CertificadoController@visualizar')->name('visualizar');
+        
+    });
+    
     
 });
 
 Route::middleware('auth')->get('logout', 'Guest\WelcomeController@logout')->name('logout');
-
-// Route::middleware('auth')->group(function () {
-    Route::prefix('module')->name('module.')->group(function() {
-        Route::get('/{slug}', 'ModuleController@index')->name('index');
-        Route::get('/{id}/questions', 'ModuleController@questions')->name('questions');
-        Route::post('/{id}/questions', 'ModuleController@evaluateQuestions')->name('evaluate.questions');
-        
-
-        Route::prefix('preparatory')->group(function() {
-            Route::get('index', 'ModuleController@preparatory')->name('preparatory');
-            Route::post('index', 'ModuleController@evaluatePreparatory')->name('preparatory.post');
-        });
-       
-    });
-
-    
-// });
 
