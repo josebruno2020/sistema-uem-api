@@ -14,18 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('guest')->namespace('Guest')->group(function() {
-    Route::get('', 'WelcomeController@index')->name('welcome');
 
-    Route::prefix('register')->name('register.')->group(function() {
-        Route::get('', 'RegisterController@index')->name('index');
-        Route::post('', 'RegisterController@save')->name('save');
-    });
-
-
-    Route::get('login', 'LoginController@index')->name('login');
-    Route::post('login', 'LoginController@login')->name('login.post');
-    Route::get('logout', 'LoginController@logout')->name('logout');
-    
+    Route::get('certificado/impressao/{id}', 'ImpressaoController@impressao')->name('impressao');
     
 });
 
