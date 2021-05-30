@@ -8,6 +8,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class CertificadoController extends Controller
@@ -15,8 +16,8 @@ class CertificadoController extends Controller
     protected function findUser($id)
     {
         $user = User::find($id);
-        if(!$user) {
-            return response('', 404);
+        if(!$user || $user->is_finished == 0) {
+            return abort(401);
         }
 
         return $user;
