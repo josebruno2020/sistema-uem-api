@@ -492,7 +492,7 @@ class ModuleSeeder extends Seeder
             $module3->id, 
             5, 
             1, 
-            'Durante a ausculta pulmonar, nota-se que não tem murmúrio vesicular em hemitórax esquerdo, sendo o direito, com ausculta normal. Qual afirmativa condiz com o quadro clínico.'
+            'Para o sucesso da intubação orotraqueal, são utilizadas algumas medidas e medicações para fazer a intubação orotraqueal. Relaxante muscular (1), sedativos/hipnóticos (2) analgésicos/opioide (3) e oxigenoterapia (4). Marque a melhor sequência dos eventos:'
         );
 
         $this->createAnswerQuestion(
