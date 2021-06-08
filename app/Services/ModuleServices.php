@@ -25,10 +25,11 @@ class ModuleServices {
         
     }
 
-    public function userFinshedAllModules($loggedUser)
+    public function userFinshedAllModules($loggedUser, int $totalModules) : bool
     {
         $this->user->where('id', $loggedUser->id)->update([
-            'is_finished' => true
+            'is_finished' => true,
+            'module_active' => $totalModules
         ]);
 
         return true;

@@ -156,7 +156,7 @@ class ModuleController extends Controller
         $totalModules = $this->module->count();
         $value = false;
         if($moduleActive > $totalModules) {
-            $value = $moduleServices->userFinshedAllModules($loggedUser);            
+            $value = $moduleServices->userFinshedAllModules($loggedUser, $totalModules);            
         }
         
         return $this->sendData([
