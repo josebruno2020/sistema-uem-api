@@ -25,8 +25,8 @@ class CertificadoController extends Controller
 
     protected function getCurrentMonth()
     {
-        setlocale(LC_TIME, 'ptb');
-        $dt = Carbon::now();
+        setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+        $dt = Carbon::now('America/Sao_Paulo');
         return \Str::ucfirst($dt->formatLocalized("%B"));
     }
 
@@ -36,13 +36,13 @@ class CertificadoController extends Controller
         $month = $this->getCurrentMonth();
 
         $pdf = \PDF::loadView('certificado.index', compact('user', 'month'))->setPaper('a4', 'landscape');
-        
+
         // return $pdf->download("$user->name-certificado.pdf");
 
 
         return $pdf->stream();
 
-        // return view('certificado.index', compact('user'));
+         return view('certificado.index', compact('user', 'month'));
     }
 
 
@@ -53,7 +53,7 @@ class CertificadoController extends Controller
 
         return view('certificado.index', compact('user', 'month'));
         // $pdf = \PDF::loadView('certificado.index', compact('user'))->setPaper('a4', 'landscape');
-        
+
         // return $pdf->stream();
     }
 
@@ -65,8 +65,8 @@ class CertificadoController extends Controller
 
         $pdf = \PDF::loadView('certificado.index', compact('user', 'month'))->setPaper('a4', 'landscape')
             ->save(public_path("certificado/$user->name-certificado.pdf"));
-        
-        
+
+
         // Envio de email;
         try {
             Mail::to($user->email)

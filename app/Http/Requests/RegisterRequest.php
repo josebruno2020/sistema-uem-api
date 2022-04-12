@@ -26,7 +26,7 @@ class RegisterRequest extends FormRequest
         return [
             'name' => 'required|string|min:2',
             'phone' => 'required|string',
-            'email' => 'required|email|string',
+            'email' => ['required','email', 'string', 'unique:users,email'],
             'password' => 'required|string'
         ];
     }
@@ -37,6 +37,7 @@ class RegisterRequest extends FormRequest
             'name.required' => 'Campo nome é obrigatório',
             'phone.required' => 'Campo telefone é obrigatório',
             'email.required' => 'Campo e-mail é obrigatório',
+            'email.unique' => 'Campo e-mail já está em uso',
             'password.required' => 'Campo senha é obrigatório',
             'name.min' => 'Campo nome deve ter mais que 2 caracteres',
             'password.confirmed' => 'Senhas não coincidem'

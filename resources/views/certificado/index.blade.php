@@ -17,17 +17,11 @@
         }
 
         main {
-            padding: 0 50px 0 50px;
+            margin: 0;
+            padding: 0 50px 50px 50px;
             background-repeat: no-repeat;
-            background-size: 100%;
-            padding-bottom:70px;
-            
         }
 
-        /* .blur {
-            backdrop-filter: grayscale(0.5) opacity(0.9) blur(2px);
-            padding: 0 50px 0 50px;
-        } */
         .linha1 {
             padding: 50px;
         }
@@ -36,33 +30,44 @@
         }
 
         .title {
-            
             font-size: 70px;
         }
 
         .texto {
-            margin-top:50px;
+            margin-top:25px;
         }
 
         .paragrafo {
             text-align: justify;
+            font-size: 25px;
+        }
+
+        .texto-pequeno {
+            margin-top: 20px;
+            text-align: justify;
+            font-size: 16px;
+        }
+
+        .user {
+            width: 100%;
+            text-align: center;
             font-size: 30px;
+            font-weight: bold;
         }
 
         .data {
             margin-top: 50px;
-            font-size: 30px;
+            font-size: 20px;
         }
 
         .footer {
             margin-top: 50px;
-            padding: 0 50px 0 50px;
         }
     </style>
 </head>
 <body>
     <main style="background-image: url({{asset('images/maringa.png')}})">
-        
+
         <header class="header">
             <table style="margin: auto">
                 <tr class="linha1">
@@ -77,19 +82,26 @@
                     </th>
                 </tr>
             </table>
+        </header>
+        <section>
 
+        </section>
             <div class="texto">
                 <p class="paragrafo">
-                    Certificamos que <strong>{{$user->name}}</strong> participou do VIII Congresso Sulbrasileiro de Fisioterapia Cardiorrespiratória e Fisioterapia em Terapia Intensiva realizado entre os dias 29 e 31 de Outubro de 2015, na cidade de Florianópolis –SC, com carga horária total de 20 horas na qualidade de OUVINTE.</p>
+                    A Universidade Estadual de Maringá com o Programa de Mestrado Profissional em Gestão, Tecnologia e Inovação em Urgência e Emergência – PROFURG, certifica que o aluno</p>
+                <p class="user">{{$user->name}}</p>
+                <p class="paragrafo"> concluiu o curso de <strong>"Ventilação Mecânica Básica"</strong> na categoria de atualização profissional, com carga horária de 20 horas/aula.
+                </p>
+                <p class="texto-pequeno">
+                    A certificação não habilita o concluinte a realizar procedimentos que não estejam regulamentados em sua respectiva profissão.
+                </p>
                 <p class="data">
                     Maringá, {{date('d')}} de {{$month}} de {{date('Y')}}.
                 </p>
             </div>
-        </header>
-        
-        
-    </main>
 
+
+    </main>
     <div class="footer">
         <table style="margin: auto">
             <tr class="linha1">
@@ -97,14 +109,16 @@
                     Assinatura 1
                 </th>
                 <th style="padding: 0 100px 0 100px;">
-                    Assinatura 1
-                </th>
-                <th>
-                    Assinatura 1
+                    Assinatura 2
                 </th>
             </tr>
         </table>
     </div>
-    
+
+
+
+
+
+
 </body>
 </html>
