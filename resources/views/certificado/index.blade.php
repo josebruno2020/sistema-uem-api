@@ -19,7 +19,7 @@
 
         main {
             margin: 0;
-            padding: 0 50px 50px 50px;
+            padding: 0 50px 20px 50px;
             background-repeat: no-repeat;
         }
 
