@@ -99,7 +99,7 @@ class ModuleSeeder extends Seeder
         $this->createAnswerQuestion(
             $preparatory1->id,
             4,
-            'Alternativa C e E estão corretas.'
+            'Alternativas C e E estão corretas.'
         );
 
         $this->createAnswerQuestion(
@@ -210,63 +210,6 @@ class ModuleSeeder extends Seeder
             3,
             'Parcialmente'
         );
-
-
-        $preparatory6 = $this->createQuestionModule(
-            $preparatory->id,
-            6,
-            1,
-            'Na Ventilação não invasiva, utiliza-se uma interfase externa geralmente uma máscara facial?',
-        );
-
-        $this->createAnswerQuestion(
-            $preparatory6->id,
-            1,
-            'Certo'
-        );
-
-        $this->createAnswerQuestion(
-            $preparatory6->id,
-            2,
-            'Errado'
-        );
-
-        $this->createAnswerQuestion(
-            $preparatory6->id,
-            3,
-            'Parcialmente'
-        );
-
-        $preparatory7 = $this->createQuestionModule(
-            $preparatory->id,
-            7,
-            4,
-            'Quais são as indicações para o uso da ventilação mecânica?',
-        );
-
-        $this->createAnswerQuestion(
-            $preparatory7->id,
-            1,
-            'Hipoventilação e Apneia (aguda ou crônica).'
-        );
-
-        $this->createAnswerQuestion(
-            $preparatory7->id,
-            2,
-            'IRpA - doença pulmonar intrínseca e hipoxemia (alteração de ventilação/perfusão - distúrbio V/Q).'
-        );
-
-        $this->createAnswerQuestion(
-            $preparatory7->id,
-            3,
-            'Reverter ou evitar a fadiga da musculatura respiratória.'
-        );
-
-        $this->createAnswerQuestion(
-            $preparatory7->id,
-            4,
-            'As alternativas “a” e “b”estão corretas'
-        );
     }
 
     protected function createQuestionsModule2($module2)
@@ -356,125 +299,23 @@ class ModuleSeeder extends Seeder
             $module2->id,
             4,
             1,
-            'Sinais clínicos/mecânicos da assincronia do paciente e ventilador mecânico sendo percebe-se esforço inspiratório do paciente, sudorese excessiva, observando o acompanhamento do ciclo fornecido pelo ventilador.'
-        );
-
-        $this->createAnswerQuestion(
-            $question4->id,
-            1,
-            'Certo'
-        );
-
-        $this->createAnswerQuestion(
-            $question4->id,
-            2,
-            'Errado'
-        );
-
-        $this->createAnswerQuestion(
-            $question4->id,
-            3,
-            'Parcialmente'
-        );
-
-        $question5 = $this->createQuestionModule(
-            $module2->id,
-            5,
-            1,
             'Com relação à VMI, julgue o item. No modo ventilatório em pressão de suporte, o paciente determina a frequência respiratória, o tempo inspiratório e o volume:'
         );
 
         $this->createAnswerQuestion(
-            $question5->id,
+            $question4->id,
             1,
             'Certo'
         );
 
         $this->createAnswerQuestion(
-            $question5->id,
+            $question4->id,
             2,
             'Errado'
         );
 
         $this->createAnswerQuestion(
-            $question5->id,
-            3,
-            'Parcialmente'
-        );
-
-
-        $question6 = $this->createQuestionModule(
-            $module2->id,
-            6,
-            2,
-            'O balonete da prótese traqueal deve se manter entre 30-35cmH2o com o cuffometro?'
-        );
-
-        $this->createAnswerQuestion(
-            $question6->id,
-            1,
-            'Certo'
-        );
-
-        $this->createAnswerQuestion(
-            $question6->id,
-            2,
-            'Errado'
-        );
-
-        $this->createAnswerQuestion(
-            $question6->id,
-            3,
-            'Parcialmente'
-        );
-
-
-        $question7 = $this->createQuestionModule(
-            $module2->id,
-            7,
-            1,
-            'Pneumonia associada a ventilação mecânica PAV: deve se manter uma PaCo2 entre 35-45 mmHg. Para isso deve se alterar a Frequência respiratória no ventilador?'
-        );
-
-        $this->createAnswerQuestion(
-            $question7->id,
-            1,
-            'Certo'
-        );
-
-        $this->createAnswerQuestion(
-            $question7->id,
-            2,
-            'Errado'
-        );
-
-        $this->createAnswerQuestion(
-            $question7->id,
-            3,
-            'Parcialmente'
-        );
-
-        $question8 = $this->createQuestionModule(
-            $module2->id,
-            8,
-            1,
-            'Para o desmame da ventilação mecânica deve ser realizado o teste de respiração espontânea TRE?'
-        );
-
-        $this->createAnswerQuestion(
-            $question8->id,
-            1,
-            'Certo'
-        );
-
-        $this->createAnswerQuestion(
-            $question8->id,
-            2,
-            'Errado'
-        );
-
-        $this->createAnswerQuestion(
-            $question8->id,
+            $question4->id,
             3,
             'Parcialmente'
         );
