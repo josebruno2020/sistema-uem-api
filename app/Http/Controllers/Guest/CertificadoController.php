@@ -33,30 +33,34 @@ class CertificadoController extends Controller
     public function impressao(int $id)
     {
         $user = $this->findUser($id);
+        $name = $user->name;
         $month = $this->getCurrentMonth();
 
-        $pdf = \PDF::loadView('certificado.index', compact('user', 'month'))->setPaper('a4', 'landscape');
+        $pdf = \PDF::loadView('certificado.index', compact('name', 'month'))->setPaper('a4', 'landscape');
 
         // return $pdf->download("$user->name-certificado.pdf");
 
 
         return $pdf->stream();
-
-        return view('certificado.index', compact('user', 'month'));
     }
 
 
-    public function visualizar(int $id)
+    public function visualizar()
     {
-//        dd('oi');
 //        $user = $this->findUser($id);
         $name = 'José Bruno';
 
-        $month = $this->getCurrentMonth();
+//        dd($month);
 
 //        return view('certificado.index', compact('name', 'month'));
-        $pdf = \PDF::loadView('certificado.index', compact('name', 'month'))->setPaper('a4', 'landscape');
-        dd($pdf);
+        $data = [
+          'month'=> $this->getCurrentMonth(),
+          'name' => $name
+        ];
+        $pdf = \PDF::loadView('certificado.index', $data)->setPaper('a4', 'landscape');
+//        return $pdf->stream();
+//        dd($pdf->stream());
+//        dd($pdf);
         return $pdf->download("$name-certificado.pdf");
 
         return $pdf->stream();

@@ -17,9 +17,13 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('guest')->namespace('Guest')->group(function() {
 
     Route::prefix('certificado')->name('certificado.')->group(function() {
-        Route::get('impressao/{id}', [CertificadoController::class, 'impressao'])->name('impressao');
-        Route::get('visualizar/{id}', [CertificadoController::class, 'visualizar'])->name('visualizar');
+        Route::get('impressao/{id}', 'CertificadoController@impressao')->name('impressao');
+        Route::get('view', 'CertificadoController@visualizar')->name('visualizar');
 
+    });
+
+    Route::get('test', function () {
+       echo 'oi';
     });
 
 
