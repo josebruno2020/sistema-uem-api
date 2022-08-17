@@ -9,11 +9,12 @@
     <style>
         @page {
             margin: 0;
-            padding:0;
+            padding: 0;
         }
+
         body {
             margin: 0;
-            padding:0;
+            padding: 0;
         }
 
         main {
@@ -25,6 +26,7 @@
         .linha1 {
             padding: 50px;
         }
+
         .logo-img {
             width: 200px;
         }
@@ -38,7 +40,7 @@
         }
 
         .texto {
-            margin-top:25px;
+            margin-top: 25px;
         }
 
         .paragrafo {
@@ -65,70 +67,68 @@
         }
 
         .footer {
-            margin-top: 100px;
+            margin-top: 50px;
         }
     </style>
 </head>
 <body>
-    <main style="background-image: url({{asset('images/maringa.png')}})">
+<main style="background-image: url({{asset('images/maringa.png')}})">
 
-        <header class="header">
-            <table style="margin: auto">
-                <tr class="linha1">
-                    <th >
-                        <img src="{{ asset('images/uem.png') }}" alt="Logo UEM" class="logo-img">
-                    </th>
-                    <th style="padding: 0 100px 0 100px;">
-                        <h1 class="title">Certificado</h1>
-                    </th>
-                    <th>
-                        <img src="{{ asset('images/profurg.png') }}" alt="Logo PROFURG" class="logo-img">
-                    </th>
-                </tr>
-            </table>
-        </header>
-        <section>
-
-        </section>
-            <div class="texto">
-                <p class="paragrafo">
-                    A Universidade Estadual de Maringá com o Programa de Mestrado Profissional em Gestão, Tecnologia e Inovação em Urgência e Emergência – PROFURG, certifica que o aluno</p>
-                <p class="user">{{$name}}</p>
-                <p class="paragrafo"> concluiu o curso de <strong>"Ventilação Mecânica Básica"</strong> na categoria de atualização profissional, com carga horária de 20 horas/aula.
-                </p>
-                <p class="texto-pequeno">
-                    A certificação não habilita o concluinte a realizar procedimentos que não estejam regulamentados em sua respectiva profissão.
-                </p>
-                <p class="data">
-                    Maringá, {{date('d')}} de {{$month}} de {{date('Y')}}.
-                </p>
-            </div>
-
-
-    </main>
-    <div class="footer">
+    <header class="header">
         <table style="margin: auto">
             <tr class="linha1">
-                <th >
-                    <div>
-
-                    <img src="{{ asset('images/assinatura.png') }}" alt="DIANA CAROLINA SALCEDO GARAY" class="ass-img">
-                    </div>
-                    <p>
-                        DIANA CAROLINA SALCEDO GARAY
-                    </p>
-
+                <th>
+                    <img src="{{ asset('images/uem.png') }}" alt="Logo UEM" class="logo-img">
                 </th>
                 <th style="padding: 0 100px 0 100px;">
-                    Assinatura 2
+                    <h1 class="title">Certificado</h1>
+                </th>
+                <th>
+                    <img src="{{ asset('images/profurg.png') }}" alt="Logo PROFURG" class="logo-img">
                 </th>
             </tr>
         </table>
+    </header>
+    <section>
+
+    </section>
+    <div class="texto">
+        <p class="paragrafo">
+            A Universidade Estadual de Maringá com o Programa de Mestrado Profissional em Gestão, Tecnologia e Inovação
+            em Urgência e Emergência – PROFURG, certifica que o aluno</p>
+        <p class="user">{{ $name }}</p>
+        <p class="paragrafo"> concluiu o curso de <strong>"Ventilação Mecânica Básica"</strong> na categoria de
+            atualização profissional, com carga horária de 20 horas/aula.
+        </p>
+        <p class="texto-pequeno">
+            A certificação não habilita o concluinte a realizar procedimentos que não estejam regulamentados em sua
+            respectiva profissão.
+        </p>
+        <p class="data">
+            Maringá, {{date('d')}} de {{$month}} de {{date('Y')}}.
+        </p>
     </div>
 
 
+</main>
+<div class="footer">
+    <table style="margin: auto">
+        <tr class="linha1">
+            <th>
+                <div>
+                    <img src="{{ asset('images/assinatura.png') }}" alt="DIANA CAROLINA SALCEDO GARAY" class="ass-img">
+                </div>
+                <p>
+                    DIANA CAROLINA SALCEDO GARAY
+                </p>
 
-
+            </th>
+            <th style="padding: 0 100px 0 100px;">
+                Assinatura 2
+            </th>
+        </tr>
+    </table>
+</div>
 
 
 </body>
