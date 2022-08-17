@@ -5,29 +5,29 @@ namespace App\Http\Controllers\Guest;
 use App\Http\Controllers\Controller;
 use App\Mail\CertificadoMail;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Exception;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class CertificadoController extends Controller
 {
-    protected function findUser($id)
+    protected function findUser($id): User
     {
         $user = User::find($id);
-        if(!$user || $user->is_finished == 0) {
+        if (!$user || $user->is_finished == 0) {
             return abort(401);
         }
 
         return $user;
     }
 
-    protected function getCurrentMonth()
+    protected function getCurrentMonth(): string
     {
         setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
         $dt = Carbon::now('America/Sao_Paulo');
-        return \Str::ucfirst($dt->formatLocalized("%B"));
+        return Str::ucfirst($dt->formatLocalized("%B"));
     }
 
     public function impressao(int $id)
@@ -42,19 +42,24 @@ class CertificadoController extends Controller
 
         return $pdf->stream();
 
-         return view('certificado.index', compact('user', 'month'));
+        return view('certificado.index', compact('user', 'month'));
     }
 
 
     public function visualizar(int $id)
     {
-        $user = $this->findUser($id);
+//        dd('oi');
+//        $user = $this->findUser($id);
+        $name = 'José Bruno';
+
         $month = $this->getCurrentMonth();
 
-        return view('certificado.index', compact('user', 'month'));
-        // $pdf = \PDF::loadView('certificado.index', compact('user'))->setPaper('a4', 'landscape');
+//        return view('certificado.index', compact('name', 'month'));
+        $pdf = \PDF::loadView('certificado.index', compact('name', 'month'))->setPaper('a4', 'landscape');
+        dd($pdf);
+        return $pdf->download("$name-certificado.pdf");
 
-        // return $pdf->stream();
+        return $pdf->stream();
     }
 
 
@@ -75,7 +80,7 @@ class CertificadoController extends Controller
             unlink(public_path("certificado/$user->name-certificado.pdf"));
 
             return $this->sendData(['message' => 'E-mail enviado com sucesso!']);
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             return response()->json(['message' => 'Não foi possível enviar seu certificado. Tente novamente mais tarde']);
         }
     }

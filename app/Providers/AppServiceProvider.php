@@ -26,10 +26,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-//        if (config('app.env') !== 'local') {
-//            $modules = Module::query()->where('is_preparatory', false)->get();
-//
-//            View::share('modules', $modules);
-//        }
+
     }
 }

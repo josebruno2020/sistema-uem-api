@@ -29,6 +29,10 @@
             width: 200px;
         }
 
+        .ass-img {
+            width: 300px;
+        }
+
         .title {
             font-size: 70px;
         }
@@ -61,7 +65,7 @@
         }
 
         .footer {
-            margin-top: 50px;
+            margin-top: 100px;
         }
     </style>
 </head>
@@ -89,7 +93,7 @@
             <div class="texto">
                 <p class="paragrafo">
                     A Universidade Estadual de Maringá com o Programa de Mestrado Profissional em Gestão, Tecnologia e Inovação em Urgência e Emergência – PROFURG, certifica que o aluno</p>
-                <p class="user">{{$user->name}}</p>
+                <p class="user">{{$name}}</p>
                 <p class="paragrafo"> concluiu o curso de <strong>"Ventilação Mecânica Básica"</strong> na categoria de atualização profissional, com carga horária de 20 horas/aula.
                 </p>
                 <p class="texto-pequeno">
@@ -106,7 +110,14 @@
         <table style="margin: auto">
             <tr class="linha1">
                 <th >
-                    Assinatura 1
+                    <div>
+
+                    <img src="{{ asset('images/assinatura.png') }}" alt="DIANA CAROLINA SALCEDO GARAY" class="ass-img">
+                    </div>
+                    <p>
+                        DIANA CAROLINA SALCEDO GARAY
+                    </p>
+
                 </th>
                 <th style="padding: 0 100px 0 100px;">
                     Assinatura 2
