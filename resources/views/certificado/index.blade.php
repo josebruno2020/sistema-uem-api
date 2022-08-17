@@ -40,7 +40,7 @@
         }
 
         .texto {
-            margin-top: 25px;
+            margin-top: 15px;
         }
 
         .paragrafo {
@@ -67,7 +67,7 @@
         }
 
         .footer {
-            margin-top: 10px;
+            margin-top: 0px;
         }
     </style>
 </head>
