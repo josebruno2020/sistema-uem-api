@@ -32,7 +32,7 @@
         }
 
         .ass-img {
-            width: 250px;
+            width: 150px;
         }
 
         .title {
