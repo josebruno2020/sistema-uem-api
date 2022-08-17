@@ -19,7 +19,7 @@
 
         main {
             margin: 0;
-            padding: 0 50px 20px 50px;
+            padding: 0 50px 10px 50px;
             background-repeat: no-repeat;
         }
 
@@ -67,7 +67,7 @@
         }
 
         .footer {
-            margin-top: 10px;
+            margin-top: 20px;
         }
     </style>
 </head>
