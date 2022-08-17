@@ -32,7 +32,7 @@
         }
 
         .ass-img {
-            width: 300px;
+            width: 250px;
         }
 
         .title {
@@ -67,7 +67,7 @@
         }
 
         .footer {
-            margin-top: 50px;
+            margin-top: 10px;
         }
     </style>
 </head>
