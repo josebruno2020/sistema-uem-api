@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class ClassModel extends Model
 {
@@ -11,7 +12,7 @@ class ClassModel extends Model
     protected $table = 'classes';
     protected $fillable = ['module_id', 'name', 'video'];
 
-    public function module()
+    public function module(): BelongsTo
     {
         return $this->belongsTo(Module::class);
     }

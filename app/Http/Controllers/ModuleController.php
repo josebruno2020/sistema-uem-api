@@ -8,9 +8,11 @@ use App\Models\AnswerUser;
 use App\Models\ClassModel;
 use App\Models\Module;
 use App\Models\Question;
+use App\Models\Quiz;
 use App\Models\User;
-use App\Services\AnswerServices;
+use App\Services\AnswerService;
 use App\Services\ModuleServices;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -27,19 +29,15 @@ class ModuleController extends Controller
         $this->classModel = $classModel;
     }
 
-    /**
-     * Função para retornar os módulos para montar o menu;
-     */
-    public function index()
+    public function index(): JsonResponse
     {
         $modules = $this->module->query()
-            ->where('is_preparatory', false)
-            ->get();
-        
-        
-        $data = ['modules' => $modules];
+            ->orderBy('id')
+            ->get()
+            ->toArray();
 
-        return $this->sendData($data);
+
+        return $this->sendData($modules);
     }
 
     public function show(int $id)
@@ -55,11 +53,10 @@ class ModuleController extends Controller
     /**
      * Module Screen
      */
-    public function slug(string $slug) 
+    public function slug(string $slug)
     {
         $module = $this->module->query()
             ->where('slug', $slug)
-            ->where('is_preparatory', false)
             ->first();
 
         if(!$module) {
@@ -72,53 +69,53 @@ class ModuleController extends Controller
     /**
      * Preparatory Questions
      */
-    public function preparatory()
+    public function preparatory(int $id)
     {
-        $module = $this->module->query()->where('is_preparatory', true)->first();
-        $questions = $this->question->query()->where('module_id', $module->id)->get();
-        
+        $module = $this->module->query()->where('id', $id)->first();
+        $quiz = Quiz::query()
+            ->where('module_id', $module->id)
+            ->where('is_preparatory', true)
+            ->with('questions')
+            ->first();
+
         $data = [
             'module' => $module,
-            'questions' => $questions
+            'quiz' => $quiz
         ];
         return $this->sendData($data);
     }
 
-    public function evaluatePreparatory(Request $request, AnswerServices $answerServices)
+    public function evaluatePreparatory(Request $request, AnswerService $answerServices)
     {
         $answers = $request->answer;
-        $moduleActive = $answerServices->UserAnswer($answers);
-        
-        $module = $this->module->find($moduleActive);
+        $answerServices->UserAnswer($answers);
+
         return $this->sendData([
-            'module_active' => $moduleActive,
-            'slug' => $module->slug, 
             'msg' => 'Resposta enviada com sucesso!'
         ]);
     }
 
-
-    /**
-     * Module Questions
-     * @param int $id
-     */
     public function questions(int $id)
     {
         $module = $this->module->find($id);
-        $questions = $this->question->query()->where('module_id', $module->id)->get();
-        
+        $quiz = Quiz::query()
+            ->where('module_id', $module->id)
+            ->where('is_preparatory', false)
+            ->with('questions')
+            ->first();
+
         $data = [
             'module' => $module,
-            'questions' => $questions
+            'quiz' => $quiz
         ];
         return $this->sendData($data);
     }
 
 
     /**
-     * Evaluate module questions 
+     * Evaluate module questions
      */
-    public function evaluateQuestions(Request $request, AnswerServices $answerServices)
+    public function evaluateQuestions(Request $request, AnswerService $answerServices)
     {
         $answers = $request->answer;
 
@@ -129,7 +126,7 @@ class ModuleController extends Controller
             if($answer == $question->correct) {
                 $correctAnswers++;
             } else {
-                array_push($incorrectAnswers, $question->number);
+                $incorrectAnswers[] = $question->number;
             }
         }
 
@@ -142,11 +139,11 @@ class ModuleController extends Controller
 
         if($percent < 80) {
             return response()->json($data, 206);
-        } 
+        }
 
         $answerServices->UserAnswer($answers, false);
         return $this->sendData($data);
-        
+
     }
 
     public function updateModuleActive(ModuleServices $moduleServices)
@@ -156,16 +153,13 @@ class ModuleController extends Controller
         $totalModules = $this->module->count();
         $value = false;
         if($moduleActive > $totalModules) {
-            $value = $moduleServices->userFinshedAllModules($loggedUser, $totalModules);            
+            $value = $moduleServices->userFinshedAllModules($loggedUser, $totalModules);
         }
-        
+
         return $this->sendData([
-            'module_active' => $moduleActive, 
+            'module_active' => $moduleActive,
             'is_finished' => $value
         ]);
-        
-
-        
     }
 }
 

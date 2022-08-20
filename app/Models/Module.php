@@ -2,27 +2,38 @@
 
 namespace App\Models;
 
+use App\Helper\ImageHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Module extends Model
 {
     use HasFactory;
-    protected $table = 'modules';
-    protected $fillable = ['name', 'slug', 'video', 'is_preparatory'];
-    protected $appends = ['class'];
 
-    public function  classes()
+    protected $table = 'modules';
+    protected $fillable = [
+        'name',
+        'description',
+        'slug',
+        'cover'
+    ];
+    protected $appends = ['class', 'img'];
+
+    public function classes(): HasMany
     {
         return $this->hasMany(ClassModel::class);
     }
 
-    public function questions()
+    public function quizzes(): HasMany
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(Quiz::class);
     }
 
-    public function users()
+
+
+    public function users(): BelongsToMany
     {
         return $this->belongsToMany(
             User::class,
@@ -36,5 +47,10 @@ class Module extends Model
     {
         return $this->classes()->get();
     }
-    
+
+    public function getImgAttribute()
+    {
+        return $this->cover ? ImageHelper::getFullPath().$this->cover : null;
+    }
+
 }

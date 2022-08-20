@@ -9,7 +9,7 @@ use App\Models\Question;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
-class AnswerServices {
+class AnswerService {
 
     protected $question;
     protected $answer;
@@ -21,6 +21,15 @@ class AnswerServices {
         $this->answer = $answer;
         $this->user = $user;
         $this->moduleServices = $moduleServices;
+    }
+
+    public static function createAnswerQuestion(int $questionId, int $number, string $answer): void
+    {
+        Answer::create([
+            'question_id' => $questionId,
+            'number' => $number,
+            'answer' => $answer
+        ]);
     }
 
     public function UserAnswer($answers, bool $update = true) : int
@@ -37,16 +46,16 @@ class AnswerServices {
         if($update) {
             $moduleActive = $this->moduleServices->updateModuleActive($loggedUser);
         }
-        
+
 
         return $moduleActive;
     }
 
-    
+
 
     public function calculatePorcentage(int $correctAnswers, int $numberQuestions)
     {
-        return ceil(($correctAnswers / $numberQuestions) * 100); 
+        return ceil(($correctAnswers / $numberQuestions) * 100);
         //Porcentagem = (acertos)/(numero de questoes)
     }
 

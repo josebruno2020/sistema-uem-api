@@ -25,25 +25,30 @@ Route::namespace('Guest')->group(function() {
     Route::post('register', 'RegisterController@save');
     Route::post('login', 'LoginController@login');
     Route::get('certificado/email/{id}', 'CertificadoController@email')->name('email');
-    
+
 });
 Route::post('mail/contact', 'MailController@contact');
-Route::middleware('auth:api')->group(function() {
+//Route::middleware('auth:api')->group(function() {
     Route::get('update-module-active', 'ModuleController@updateModuleActive');
     Route::prefix('module')->group(function() {
         Route::get('', 'ModuleController@index');
-        Route::get('/show/{id}', 'ModuleController@show');
-        Route::get('/{id}/questions', 'ModuleController@questions');
-        Route::post('/{id}/questions', 'ModuleController@evaluateQuestions');
-        Route::get('/{slug}', 'ModuleController@slug');
-        Route::get('preparatory/index', 'ModuleController@preparatory');
-        Route::post('preparatory/index', 'ModuleController@evaluatePreparatory');
+        Route::get('show/{id}', 'ModuleController@show');
+        Route::get('{id}/questions', 'ModuleController@questions');
+        Route::post('{id}/questions', 'ModuleController@evaluateQuestions');
+        Route::get('{slug}', 'ModuleController@slug');
+        Route::get('{id}/preparatory', 'ModuleController@preparatory');
+        Route::post('{id}/preparatory', 'ModuleController@evaluatePreparatory');
+
+        Route::post('user-module', 'UserModuleController@create');
+        Route::get('{moduleId}/user-module', 'UserModuleController@show');
     });
 
     Route::prefix('class')->group(function() {
         Route::get('{id}', 'ClassController@index');
     });
-    
-});
+
+
+
+//});
 
 

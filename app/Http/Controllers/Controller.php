@@ -12,8 +12,8 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
 
-    protected function sendData(array $data) 
+    protected function sendData(array $data, int $status = 200)
     {
-        return response()->json($data, 200);
+        return response()->json($data, $status);
     }
 }
