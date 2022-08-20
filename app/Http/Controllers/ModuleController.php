@@ -12,6 +12,7 @@ use App\Models\Quiz;
 use App\Models\User;
 use App\Services\AnswerService;
 use App\Services\ModuleServices;
+use App\Services\UserModuleService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -69,7 +70,7 @@ class ModuleController extends Controller
     /**
      * Preparatory Questions
      */
-    public function preparatory(int $id)
+    public function preparatory($id)
     {
         $module = $this->module->query()->where('id', $id)->first();
         $quiz = Quiz::query()
@@ -89,6 +90,7 @@ class ModuleController extends Controller
     {
         $answers = $request->answer;
         $answerServices->UserAnswer($answers);
+        UserModuleService::finished($request->get('module_id'), 'preparatory');
 
         return $this->sendData([
             'msg' => 'Resposta enviada com sucesso!'
@@ -132,6 +134,7 @@ class ModuleController extends Controller
 
         $percent = $answerServices->calculatePorcentage($correctAnswers, count($answers));
 
+
         $data = [
             'incoorectAnswers' => $incorrectAnswers,
             'percent' => $percent
@@ -142,6 +145,7 @@ class ModuleController extends Controller
         }
 
         $answerServices->UserAnswer($answers, false);
+        UserModuleService::finished($request->get('module_id'), 'final');
         return $this->sendData($data);
 
     }

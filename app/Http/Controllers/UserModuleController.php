@@ -17,8 +17,8 @@ class UserModuleController extends Controller
 
     public function create(Request $request): JsonResponse
     {
-        $moduleId = $request->get('module_id');
-        $userModule = UserModuleService::createUserModule($moduleId);
+        $moduleSlug = $request->get('slug');
+        $userModule = UserModuleService::createUserModule($moduleSlug);
         return $this->sendData($userModule, Response::HTTP_CREATED);
     }
 }

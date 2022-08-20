@@ -39,9 +39,12 @@ Route::post('mail/contact', 'MailController@contact');
         Route::get('{id}/preparatory', 'ModuleController@preparatory');
         Route::post('{id}/preparatory', 'ModuleController@evaluatePreparatory');
 
-        Route::post('user-module', 'UserModuleController@create');
-        Route::get('{moduleId}/user-module', 'UserModuleController@show');
+
+//
     });
+
+    Route::post('user-module', 'UserModuleController@create');
+    Route::get('user-module/{moduleId}', 'UserModuleController@show');
 
     Route::prefix('class')->group(function() {
         Route::get('{id}', 'ClassController@index');
