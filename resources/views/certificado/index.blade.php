@@ -15,16 +15,18 @@
         body {
             margin: 0;
             padding: 0;
+            height: 2480px;
         }
 
         main {
             margin: 0;
-            padding: 0 50px 10px 50px;
+            padding: 0 50px;
+
             background-repeat: no-repeat;
         }
 
         .linha1 {
-            padding: 50px;
+            padding: 0 50px;
         }
 
         .logo-img {
@@ -67,12 +69,16 @@
         }
 
         .footer {
-            margin-top: 20px;
+            margin-top: 50px;
+        }
+
+        .ass {
+            text-transform: uppercase;
         }
     </style>
 </head>
-<body>
-<main style="background-image: url({{asset('images/maringa.png')}})">
+<body style="background-image: url({{asset('images/maringa.png')}})">
+<main >
 
     <header class="header">
         <table style="margin: auto">
@@ -89,9 +95,7 @@
             </tr>
         </table>
     </header>
-    <section>
 
-    </section>
     <div class="texto">
         <p class="paragrafo">
             A Universidade Estadual de Maringá com o Programa de Mestrado Profissional em Gestão, Tecnologia e Inovação
@@ -109,26 +113,32 @@
         </p>
     </div>
 
+    <div class="footer">
+        <table style="margin: auto">
+            <tr class="linha1">
+                <th>
+                    <div>
+                        <img src="{{ asset('images/assinatura.png') }}" alt="DIANA CAROLINA SALCEDO GARAY"
+                             class="ass-img">
+                    </div>
+                    <p class="ass">
+                        DIANA CAROLINA SALCEDO GARAY
+                    </p>
 
+                </th>
+                <th style="padding-left: 100px;">
+                    <p class="ass">
+                        Programa de Pós-Graduação em Gestão,
+                    </p>
+                    <p class="ass">
+                        Tecnologia e Inovação em Urgência e Emergência UEM
+                    </p>
+
+                </th>
+            </tr>
+        </table>
+    </div>
 </main>
-<div class="footer">
-    <table style="margin: auto">
-        <tr class="linha1">
-            <th>
-                <div>
-                    <img src="{{ asset('images/assinatura.png') }}" alt="DIANA CAROLINA SALCEDO GARAY" class="ass-img">
-                </div>
-                <p>
-                    DIANA CAROLINA SALCEDO GARAY
-                </p>
-
-            </th>
-            <th style="padding: 0 100px 0 100px;">
-                Assinatura 2
-            </th>
-        </tr>
-    </table>
-</div>
 
 
 </body>

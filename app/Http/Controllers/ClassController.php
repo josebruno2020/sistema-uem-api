@@ -22,6 +22,10 @@ class ClassController extends Controller
         }
         $module = Module::query()->select('id', 'name')->where('id', $class->module_id)->first();
 
-        return $this->sendData(['class' => $class, 'module' =>$module]);
+        $total = ClassModel::query()->where('module_id', $module->id)->count();
+
+        $next = ClassModel::query()->where('module_id', $module->id)->where('number', ($class->number + 1))->first();
+
+        return $this->sendData(['class' => $class, 'module' =>$module, 'total' => $total, 'next' => $next]);
     }
 }

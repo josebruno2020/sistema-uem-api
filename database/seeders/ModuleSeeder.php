@@ -28,11 +28,33 @@ class ModuleSeeder extends Seeder
             'cover' => 'cover-1.jpeg'
         ]);
 
-        //TODO video aula
+
         ClassService::createClassModel(
             $module,
-            'Ventilação Mecânica',
-            '<iframe class="module_video" src="https://www.youtube.com/embed/HCGj_-sUZXw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
+            'Aula 01',
+            '<iframe src="https://prezi.com/v/embed/_r_55zd2tvn2/" id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="autoplay; fullscreen" height="315" width="560"></iframe>',
+            1
+        );
+
+        ClassService::createClassModel(
+            $module,
+            'Aula 02',
+            '<iframe src="https://prezi.com/v/embed/Pc0MRoqjvFfppUNNZZCA/" id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="autoplay; fullscreen" height="315" width="560"></iframe>',
+            2
+        );
+
+        ClassService::createClassModel(
+            $module,
+            'Aula 03',
+            '<iframe src="https://prezi.com/v/embed/am7rhbynxWBbitgcCrz6/" id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="autoplay; fullscreen" height="315" width="560"></iframe>',
+            3
+        );
+
+        ClassService::createClassModel(
+            $module,
+            'Aula 04',
+            '<iframe src="https://prezi.com/v/embed/obdqRIA0Hg7rRE7sNj1x/" id="iframe_container" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" allow="autoplay; fullscreen" height="315" width="560"></iframe>',
+            4
         );
 
         $this->createPreparatoryQuiz($module);

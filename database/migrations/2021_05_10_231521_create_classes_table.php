@@ -18,7 +18,8 @@ class CreateClassesTable extends Migration
             $table->integer('module_id')->unsigned();
             $table->string('name');
             $table->text('video');
-            
+            $table->integer('number');
+
             $table->foreign('module_id')
                 ->references('id')->on('modules');
             $table->timestamps();

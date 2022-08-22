@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Guest;
 use App\Http\Controllers\Controller;
 use App\Mail\CertificadoMail;
 use App\Models\User;
+use App\Models\UserModule;
 use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -16,7 +18,7 @@ class CertificadoController extends Controller
     protected function findUser($id): User
     {
         $user = User::find($id);
-        if (!$user || $user->is_finished == 0) {
+        if (!$user) {
             return abort(401);
         }
 
@@ -30,39 +32,34 @@ class CertificadoController extends Controller
         return Str::ucfirst($dt->formatLocalized("%B"));
     }
 
-    public function impressao(int $id)
+    public function impressao(int $id, Request $request)
     {
         $user = $this->findUser($id);
+        $moduleId = $request->get('module');
+
+        $userModule = UserModule::query()->where('module_id', $moduleId)->where('user_id', $user->id)->first();
+
+        if (!$userModule->is_finished) {
+            return abort(403);
+        }
+
         $name = $user->name;
         $month = $this->getCurrentMonth();
 
         $pdf = \PDF::loadView('certificado.index', compact('name', 'month'))->setPaper('a4', 'landscape');
-
-        // return $pdf->download("$user->name-certificado.pdf");
-
-
         return $pdf->stream();
     }
 
 
     public function visualizar()
     {
-//        $user = $this->findUser($id);
-        $name = 'José Bruno';
+        $name = Str::random(10);
 
-//        dd($month);
-
-//        return view('certificado.index', compact('name', 'month'));
         $data = [
           'month'=> $this->getCurrentMonth(),
           'name' => $name
         ];
         $pdf = \PDF::loadView('certificado.index', $data)->setPaper('a4', 'landscape');
-//        return $pdf->stream();
-//        dd($pdf->stream());
-//        dd($pdf);
-        return $pdf->download("$name-certificado.pdf");
-
         return $pdf->stream();
     }
 
